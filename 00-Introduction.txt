@@ -1,0 +1,13 @@
+This repository is all about graphs.
+
+Mainly graphs are divided into two types : 
+
+Directed
+Undirected
+
+We will cover the following on each of them : 
+
+BFS and DFS Traversals
+Detect Cycle in graphs : Directed & Undirected
+Topological Sort (Only DAGs)
+Shortest Path in a graph : Directed & Undirected
