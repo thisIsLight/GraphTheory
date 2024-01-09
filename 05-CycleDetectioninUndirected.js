@@ -36,21 +36,31 @@ const DFSCycleDetectionUndirected = (adjlist, node, visited, parent) => {
     }
 }
 
-// const BFSCycleDetectionUndirected = (adjlist, node, visited, dfsarr) => {
+const BFSCycleDetectionUndirected = (adjlist, node, visited) => {
     
-//     if(visited[node]){
-//         return
-//     }
-//     else{
-//         dfsarr.push(node)
-//         visited[node] = 1
-//         let cur = adjlist[node]
-//         for(let i=0;i<cur.length;i++){
-//             parent.setInterval()
-//             DFS(adjlist, cur[i], visited, dfsarr)
-//         }
-//     }
-// }
+    let q = []
+    let parent = new Map()
+
+    //insert visited
+    visited[node] = 1
+    q.push(node)
+    parent.set(node, -1)
+
+    while(q.length > 0){
+        let par = q.shift()
+        let cur = adjlist[par]
+        for(let i=0;i<cur.length;i++){
+            if(!visited[cur[i]]){
+                visited[cur[i]] = 1
+                q.push(cur[i])
+            }
+            else if(visited[cur[i]] && parent.get(cur[i]) != node){
+                return true
+            }
+        }
+    }
+    return false
+}
 
 
 //Inputs : 
@@ -95,13 +105,13 @@ for(let i=1;i<=nodes;i++){
     }
 }
 
-// for(let i=1;i<=nodes;i++){
-//     if(!visited[i]){
-//         if(BFSCycleDetectionUndirected(adjlist, i, visited, dfsarr)){
-//             bfs = true
-//             break
-//         }
-//     }
-// }
+for(let i=1;i<=nodes;i++){
+    if(!visited[i]){
+        if(BFSCycleDetectionUndirected(adjlist, i, visited)){
+            bfs = true
+            break
+        }
+    }
+}
 
 console.log(dfs, bfs)
